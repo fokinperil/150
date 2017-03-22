@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="static/css/app.css">
+        <link rel="stylesheet" href="/static/css/animation.css"><!--[if IE 7]><link rel="stylesheet" href="fontello-ie7.css"><![endif]-->
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Khula" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+        <style>
+
+			@font-face {
+				font-family: 'fontello';
+				src: url('static/font/fontello.eot');
+				src: url('static/font/fontello.eot#iefix') format('embedded-opentype'),
+					url('static/font/fontello.woff') format('woff'),
+					url('static/font/fontello.ttf') format('truetype'),
+					url('static/font/fontello.svg#fontello') format('svg');
+				font-weight: normal;
+				font-style: normal;
+				}
+
+				.font-icon
+				{
+				font-family: "fontello";
+				font-style: normal;
+				font-weight: normal;
+				speak: none;
+				display: inline-block;
+				text-decoration: inherit;
+				width: 1em;
+				margin-right: .2em;
+				text-align: center;
+				/* opacity: .8; */
+
+				/* For safety - reset parent styles, that can break glyph codes*/
+				font-variant: normal;
+				text-transform: none;
+
+				/* fix buttons height, for twitter bootstrap */
+				line-height: 1em;
+
+				/* Animation center compensation - margins should be symmetric */
+				/* remove if not needed */
+				margin-left: .2em;
+
+				/* You can be more comfortable with increased icons size */
+				/* font-size: 120%; */
+
+				/* Font smoothing. That was taken from TWBS */
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+
+				/* Uncomment for 3D effect */
+				/* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+				}
+		</style>
+    </head>
+    
+    <body id="top">
+            <div id="audio-controller-wrapper">
+                <div id="audio-controller">
+                    <div id="volume-line"><div id="volume-handle"></div></div>
+                    <div id="volume-icon" onClick="mute()"><i class="font-icon">&#xe8b0</i></div>
+                </div>
+            </div>
+
+            <div id="member-profile-overlay">
+                <div id="member-profile">
+
+                    <div id="member-profile-desc">
+                        <div id="member-profile-desc-img">
+                            <div id="member-profile-desc-name">Julien Sax</div>
+                            <img src="static/img/people/saxo1.jpg">
+                            <div id="member-profile-desc-img-instrument"><img src="static/img/icons/saxo_icon.png"></div>
+                        </div>
+                        <div id="member-profile-desc-content">
+                            <div id="member-profile-tabs">
+                                <div class="member-profile-tab member-tab-selected">Description</div>
+                                <div class="member-profile-tab">Images</div>
+                                <div class="member-profile-tab">Plus...</div>
+                                <div id="member-profile-close"><span onClick="profile_close()">X</span></div>
+                            </div>
+                            Content here...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="listing">
+                <div id="listing-padding" style="padding-top: 10px; padding-bottom: 10px">
+                    <div class="list-item">Dossier de presse</div>
+                    <div class="list-item">Dossier technique Rider</div>
+                    <div class="list-item">Plan de scène</div>
+                    <div class="list-item">Plan de feux</div>
+                </div>
+            </div>
+
+            <div id="top-bar">
+                <div id="top-bar-logo"><img src="static/img/logo.png"></div>
+                <div class="top-bar-tab">Dossiers</div>
+                <div class="border-trunc" style="background: #fff; width: 10px;"></div>
+                <div class="top-bar-tab">Audio</div>
+                <div class="border-trunc" style="background: #fff; width: 10px;"></div>
+                <div class="top-bar-tab">Tab 2</div>
+                <div id="top-bar-more"></div>
+            </div>
+
+            <div id="review">
+                <div id="review-description">
+                    <div id="review-star-wars">
+                        <div id="star-wars-content">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et tempor ante. Vestibulum rutrum ipsum nisi, eu vehicula ipsum tincidunt sit amet. 
+                            Nullam pretium pellentesque lacus sit amet feugiat. Aenean ac nibh gravida, tempor mi eu, pretium ante. Suspendisse non fermentum orci. 
+                            Cras sodales hendrerit nisl, in viverra ligula ultricies laoreet. Aliquam porta dolor quis vulputate egestas. Curabitur vel quam magna. 
+                            Phasellus tristique sollicitudin ipsum, et molestie nisl sodales et. Phasellus consectetur dolor quis nisl finibus, et ullamcorper erat consequat. 
+                            Morbi at urna vitae ipsum venenatis aliquam. Etiam sed mi id libero aliquam tempus. Sed ut erat at purus commodo interdum vitae nec nisi.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="members-sign">
+                Members
+            </div>
+            <div class="border-trunc"></div>
+
+            <div id="members">
+                <div class="members-group">
+                    <div class="member">
+                        <div class="member-overlay">
+                            <div class="member-overlay-galaxy"></div>
+                            <div class="member-overlay-content">
+                                <img src="static/img/icons/saxo_icon.png">
+                                <div class="member-overlay-more" onClick="profile_view()">See more...</div>
+                            </div>
+                        </div>
+                        <div class="member-image"><img src="static/img/people/saxo.jpg"></div>
+                        <div class="member-description">
+                            <div class="member-description-name">Julien Sax</div>
+                            <div class="member-description-text">
+                                Fusce tristique, erat vel ullamcorper ultricies, nisl magna placerat libero, non ultrices arcu elit sit amet orci. 
+                                Quisque consequat auctor condimentum. Vestibulum convallis diam imperdiet, commodo mauris sit amet, aliquam massa. 
+                                Vestibulum vel efficitur sapien. Fusce tempus, nunc pretium porttitor lacinia, massa leo gravida massa, bibendum fringilla lorem velit eu velit. 
+                                Nunc felis eros, aliquam eu nisi a, facilisis feugiat lorem. Proin ultrices lorem orci, eget gravida nulla commodo sit amet. 
+                                Cras ullamcorper odio metus, non efficitur velit convallis a. Maecenas tincidunt, felis blandit blandit blandit, dui dolor rutrum velit, ut fermentum enim ex sit amet ipsum. 
+                                Quisque mollis ullamcorper dui, quis lobortis neque sodales ut. Vivamus vel pretium turpis.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member">
+                        <div class="member-overlay">
+                            <div class="member-overlay-galaxy"></div>
+                            <div class="member-overlay-content">
+                                <img src="static/img/icons/guitar_icon.png">
+                                <div class="member-overlay-more" onClick="profile_view()">See more...</div>
+                            </div>
+                        </div>
+                        <div class="member-description">
+                            <div class="member-description-name">Member 1</div>
+                            <div class="member-description-text">
+                                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam volutpat a turpis ut convallis. 
+                                Fusce mollis in metus vitae ullamcorper. Integer dapibus iaculis magna, fermentum scelerisque eros interdum a. Aliquam erat volutpat. 
+                                Donec venenatis scelerisque elit sed fermentum. Ut tristique dui sed fringilla porta. Curabitur rutrum eleifend odio, quis faucibus nulla finibus ac.
+                            </div>
+                        </div>
+                        <div class="member-image"><img src="static/img/people/bass.jpg"></div>
+                    </div>
+                </div>
+                <div class="members-group">
+                    <div class="member">
+                        <div class="member-overlay">
+                            <div class="member-overlay-galaxy"></div>
+                            <div class="member-overlay-content">
+                                <img src="static/img/icons/drum_icon.png">
+                                <div class="member-overlay-more" onClick="profile_view()">See more...</div>
+                            </div>
+                        </div>
+                        <div class="member-image"><img src="static/img/people/drums.jpg"></div>
+                        <div class="member-description">
+                            <div class="member-description-name">Member 2</div>
+                            <div class="member-description-text">
+                                Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In consequat vitae dolor id efficitur. 
+                                Vivamus quis odio augue. Aenean velit justo, cursus a lorem ac, consectetur ullamcorper neque.
+                                Ut leo neque, sollicitudin vitae efficitur eget, congue vitae nisl. Maecenas fringilla rutrum condimentum. 
+                                In ac aliquet enim. Donec sem sapien, accumsan et lorem malesuada, lobortis pretium augue. Morbi venenatis risus lobortis sem vestibulum iaculis.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tour-dates-sign">Tour dates</div>
+            <div class="border-trunc" style="background: #fff; height: 7px"></div>
+
+            <div id="tour-dates">
+                <div class="date">
+                    <div class="date-d">17 June 2017</div>
+                    <div class="date-v">Paris</div>
+                    <div class="date-l">Opéra de Paris</div>
+                </div>
+                
+                <div class="date">
+                    <div class="date-d">27 June 2017</div>
+                    <div class="date-v">Orléans</div>
+                    <div class="date-l">Théâtre d'Orléans</div>
+                </div>
+
+                <div class="date">
+                    <div class="date-d">01 July 2017</div>
+                    <div class="date-v">Paris</div>
+                    <div class="date-l">La Cigale</div>
+                </div>
+
+                <div class="date">
+                    <div class="date-d">07 July 2017</div>
+                    <div class="date-v">Paris</div>
+                    <div class="date-l">L'Olympia</div>
+                </div>
+
+                <div class="date">
+                    <div class="date-d">11 July 2017</div>
+                    <div class="date-v">Lyon</div>
+                    <div class="date-l">Halle Tony Garnier</div>
+                </div>
+
+                <div class="date">
+                    <div class="date-d">15 June 2017</div>
+                    <div class="date-v">Lyon</div>
+                    <div class="date-l">Comédie Odéon</div>
+                </div>
+
+                <div class="date">
+                    <div class="date-d">28 July 2017</div>
+                    <div class="date-v">Montpellier</div>
+                    <div class="date-l">Le Zénith</div>
+                </div>
+
+                <div class="date">
+                    <div class="date-d">03 August 2017</div>
+                    <div class="date-v">Tours</div>
+                    <div class="date-l">Palais des sports</div>
+                </div>
+
+                <div class="date">
+                    <div class="date-d">10 Augsut 2017</div>
+                    <div class="date-v">Tours</div>
+                    <div class="date-l">Le Vinci</div>
+                </div>
+
+            </div>
+
+            <div id="tour-dates-end"></div>
+
+            <div id="contact-us">
+                <div id="socials">
+                    <img class="social-icon" src="static/img/icons/twitter_icon.png">
+                    <img class="social-icon" src="static/img/icons/facebook_icon.png">
+                    <img class="social-icon" src="static/img/icons/soundcloud_icon.png">
+                    <img class="social-icon" src="static/img/icons/youtube_icon.png">
+                </div>
+            </div>
+
+            <div id="footer">
+                © 2017 App,  <a href="#">À propos</a> <a href="#">Cookies</a> <a href="#">Informations sur la publicité</a>
+            </div>
+
+            <script src="static/js/app.js"></script>
+    </body>
+</html>
