@@ -1,19 +1,18 @@
 var profile_transition_end = function (e) {
     console.log("Profile transition ended.");
-    document.getElementById("member-profile-overlay").style.display = "none";
+    document.getElementById("member-profile-overlay").style.zIndex = "-1";
     e.currentTarget.removeEventListener("transitionend", profile_transition_end, false);
 }
 
 var profile_view = function () {
     var overlay = document.getElementById("member-profile-overlay");
     var profile = document.getElementById("member-profile");
-    overlay.style.display = "block";
+    overlay.style.zIndex = '2';
     overlay.style.opacity = "1";
 
     profile.classList.remove("profile-appear");
     profile.classList.remove("profile-disappear");
     profile.offsetWidth;
-    profile.style.display = "flex";
     profile.classList.add("profile-appear");
 }
 
@@ -70,7 +69,7 @@ var v_handle = document.getElementById("volume-handle");
 var v_line = document.getElementById("volume-line");
 var v_icon = document.getElementById("volume-icon").getElementsByTagName("I")[0];
 var v_value = 0;
-var mute_resume_v = 0;
+var mute_resume_v = 0.2;
 
 var mute = function () {
     if ( v_value > 0 ) {
@@ -79,6 +78,8 @@ var mute = function () {
         v_icon.innerHTML = "&#xea85";
         mute_resume_v = v_value;
         v_value = 0;
+
+        document.getElementById("volume-active").style.height = Math.round(v_value * 100) + "%";
     }
     else {
         console.log("Resume volume at ", mute_resume_v);
@@ -87,6 +88,8 @@ var mute = function () {
         console.log("Resume pos at ", v_pos);
         v_handle.style.top = v_pos + "px";
         v_value = mute_resume_v;
+
+        document.getElementById("volume-active").style.height = Math.round(v_value * 100) + "%";
         
         
         switch ( true ) {
@@ -109,9 +112,12 @@ var mute = function () {
 
         mute_resume_v = 0;
     }
+
+    audio.volume = v_value;
 }
 
-var get_volume = function () {
+var update_volume = function () {
+    console.log("Update volume");
     var p = v_handle.offsetTop;
     p = p < 0 ? 0 : p;
 
@@ -119,6 +125,10 @@ var get_volume = function () {
     console.log("p: ", p, ", limit: ", limit);
     var volume = 1 - (p / limit);
     volume = volume < 0 ? 0 : volume;
+
+    audio.volume = volume;
+
+    document.getElementById("volume-active").style.height = Math.round(volume * 100) + "%";
 
     switch ( true ) {
         case !volume:
@@ -146,7 +156,7 @@ v_line.addEventListener("mousedown", function(e) {
     var v_line_bound = v_line.getBoundingClientRect();
     if ( e.clientY > v_line_bound.top && e.clientY < v_line_bound.bottom )
         v_handle.style.top = (e.clientY - v_line_bound.top) + "px";
-    get_volume();
+    update_volume();
 })
 
 v_handle.addEventListener("dragstart", function (e) {
@@ -175,7 +185,7 @@ document.addEventListener("mousemove", function(e) {
       
       if ( e.clientY > v_line_bound.top + 7 && e.clientY < v_line_bound.bottom ) {
         v_handle.style.top = (e.clientY - v_line_bound.top) + "px";
-        get_volume();
+        update_volume();
       }
     }
 }, false);
@@ -191,8 +201,8 @@ var disp_members = function () {
 }
 
 var galaxy_mouse_move = function (e) {
-    var mv_x = Math.round(e.clientX / 17);
-    var mv_y = Math.round(e.clientY / 17);
+    var mv_x = Math.round(e.clientX / 7);
+    var mv_y = Math.round(e.clientY / 7);
     e.currentTarget.getElementsByClassName("member-overlay-galaxy")[0].style.backgroundPosition =  -mv_x + "px " + -mv_y + "px";
 }
 
@@ -203,3 +213,7 @@ var galaxy_overlay_effect = function () {
 }
 
 galaxy_overlay_effect();
+disp_members();
+
+var audio = document.getElementById("player");
+mute();

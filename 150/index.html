@@ -60,16 +60,21 @@
     </head>
     
     <body id="top">
+        <div class="wrapper">
+            <audio controls hidden autoplay id="player">
+                <source src="static/audio/hip_hop_chill.mp3" type="audio/mp3">
+            </audio>
+
             <div id="audio-controller-wrapper">
                 <div id="audio-controller">
-                    <div id="volume-line"><div id="volume-handle"></div></div>
+                    <div id="volume-line"><div id="volume-active"></div><div id="volume-handle"></div></div>
                     <div id="volume-icon" onClick="mute()"><i class="font-icon">&#xe8b0</i></div>
                 </div>
             </div>
 
             <div id="member-profile-overlay">
                 <div id="member-profile">
-
+                    <div id="member-profile-close"><span onClick="profile_close()">X</span></div>
                     <div id="member-profile-desc">
                         <div id="member-profile-desc-img">
                             <div id="member-profile-desc-name">Julien Sax</div>
@@ -77,11 +82,11 @@
                             <div id="member-profile-desc-img-instrument"><img src="static/img/icons/saxo_icon.png"></div>
                         </div>
                         <div id="member-profile-desc-content">
+                            <div style="height: 40px;"></div> <!-- blank -->
                             <div id="member-profile-tabs">
                                 <div class="member-profile-tab member-tab-selected">Description</div>
                                 <div class="member-profile-tab">Images</div>
                                 <div class="member-profile-tab">Plus...</div>
-                                <div id="member-profile-close"><span onClick="profile_close()">X</span></div>
                             </div>
                             Content here...
                         </div>
@@ -263,10 +268,13 @@
                 </div>
             </div>
 
-            <div id="footer">
-                © 2017 App,  <a href="#">À propos</a> <a href="#">Cookies</a> <a href="#">Informations sur la publicité</a>
+            <div id="footer-wrapper">
+                <div id="footer">
+                    © 2017 App,  <a href="#">À propos</a> <a href="#">Cookies</a> <a href="#">Informations sur la publicité</a>
+                </div>
             </div>
 
             <script src="static/js/app.js"></script>
+        </div>
     </body>
 </html>

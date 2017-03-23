@@ -7,6 +7,13 @@ html, body {
     background: #272E3B;
     color: #fff;
     position: relative;
+    height: 100%;
+} 
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }
 
 .border-trunc {
@@ -27,10 +34,10 @@ html, body {
     flex-direction: column;
     align-items: center;
     position: fixed;
-    left: 95%;
-    top: 90%;
+    right: 0;
+    bottom: 0;
+    transform: translate(-50px, -50px);
     z-index: 10;
-    transform: translate(-50%, -50%);
     width: 30px;
     opacity: .2;
     transition: opacity 0.3s ease-in-out;
@@ -54,6 +61,13 @@ html, body {
     height: 80px;
     background: rgba(57, 95, 171, 0.7);
     cursor: pointer;
+    align-items: flex-end;
+}
+
+#volume-active {
+    position: relative;
+    width: 100%;
+    background: #fff;
 }
 
 #volume-handle {
@@ -81,12 +95,12 @@ html, body {
 @keyframes member-appear {
     form {
         opacity: 0;
-        transform: translateX(-100px);
+        left: -100px;
     }
 
     to {
         opacity: 1;
-        transform: translateX(0);
+        left: 0px;
     }
 }
 
@@ -127,20 +141,24 @@ html, body {
 
 @keyframes profile-appear {
     from {
+        transform: translateY(-300px) rotateX(-70deg);
         opacity: 0;
     }
-
+    
     to {
+        transform: translateY(0px) rotateX(0);  
         opacity: 1;
     }
 }
 
 @keyframes profile-disappear {
-    form {
+    from {
+        transform: translateY(0) rotateX(0);
         opacity: 1;
     }
-
+    
     to {
+        transform: translateY(-300px) rotateX(-70deg);
         opacity: 0;
     }
 }
@@ -150,11 +168,11 @@ html, body {
 }
 
 .profile-appear {
-    animation: profile-appear 0.3s forwards;
+    animation: profile-appear 0.5s forwards;
 }
 
 .profile-disappear {
-    animation: profile-disappear 0.3s forwards;
+    animation: profile-disappear 0.5s forwards;
 }
 
 #listing {
@@ -329,7 +347,8 @@ html, body {
     min-height: 250px;
     min-width: 500px;
     overflow: hidden;
-    opacity: 1;
+    opacity: 0;
+    left: 0;
 }
 
 .member:hover > .member-overlay {
@@ -349,7 +368,7 @@ html, body {
     top: 100%;
     opacity: 0;
     cursor: pointer;
-    transition: opacity 0.3s ease-in-out, top 0.3s ease-in-out;
+    transition: opacity 0.5s ease-in-out, top 0.5s ease-in-out;
 }
 
 .member-overlay-content {
@@ -386,13 +405,13 @@ html, body {
 .member-overlay-galaxy {
     display: block;
     position: absolute;
-    width: 150%;
-    height: 150%;
+    width: 100%;
+    height: 100%;
     z-index: 0;
-    opacity: 0.2;
+    opacity: 0.1;
     background-image: url("../img/galaxy2.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: auto;
+    /*background-repeat: no-repeat;*/
 }
 
 .member-image {
@@ -462,24 +481,24 @@ html, body {
 }
 
 #member-profile-overlay {
+    display: flex;
+    flex-direction: column;
     position: fixed;
-    display: none;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background: rgba(33, 40, 53, 0.8);
-    z-index: 2;
+    z-index: -1;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.4s ease-in-out;
 }
 
 #member-profile {
-    position: absolute;
     display: flex;
     flex-direction: column;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%;
+    margin: auto;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    width: 50%;
     height: 500px;
     padding: 30px;
     background: #fff;
@@ -490,6 +509,10 @@ html, body {
 #member-profile-close {
     display: flex;
     justify-content: flex-end;
+    position: absolute;
+    right: 0;
+    margin-top: -5px;
+    margin-right: 15px;
     flex: 1;
     font-size: 27px;
     font-weight: 100;
@@ -513,24 +536,34 @@ html, body {
 .member-profile-tab {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 15px;
+    font-size: 13px;
     border-bottom: 2px solid transparent;
     max-width: 300px;
     width: 150px;
     cursor: pointer;
     margin-right: 7px;
-    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
 }
 
 .member-profile-tab:hover {
     color: #749BBE;
-    transform: translateY(-5px);
+}
+
+.member-profile-tab:hover::before {
+    transform: translateX(5px);
 }
 
 .member-tab-selected {
-    border-bottom: 2px solid #6183C6;
     color: #749BBE;
+}
+
+
+.member-profile-tab::before {
+    content: "";
+    font-family: "fontello";
+    font-size: 13px;
+    margin-right: 15px;
+    transition: transform 0.2s ease-in-out;
 }
 
 #member-profile-desc {
@@ -541,12 +574,10 @@ html, body {
 
 #member-profile-desc-name {
     display: flex;
-    align-items: center;
     justify-content: center;
     font-size: 17px;
     font-weight: bold;
-    height: 30px;
-    margin-bottom: 15px;
+    height: 40px;
 }
 
 #member-profile-desc-img {
@@ -703,11 +734,18 @@ html, body {
     transform: scale(1.1) translateY(-10px);
 }
 
+#footer-wrapper {
+    display: flex;
+    align-items: flex-end;
+    flex: 1;  
+}
+
 #footer {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 70px;
+    min-height: 70px;
 }
 
 #footer a {
